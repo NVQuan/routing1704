@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
@@ -15,6 +16,7 @@ import { PageNotFoundComponent } from './components/page-not-found.component';
 
 // services
 import { RequestService } from './services/request.service';
+import { UserService } from './services/user.service';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
@@ -38,11 +40,12 @@ const routesConfig: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routesConfig)
   ],
-  providers: [RequestService],
+  providers: [RequestService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

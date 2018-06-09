@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
     template: `
@@ -31,7 +32,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SignInComponent implements OnInit {
     formSignIn: FormGroup;
 
-    constructor() {}
+    constructor(private userService: UserService) {}
 
     ngOnInit() {
         this.formSignIn = new FormGroup({
@@ -42,7 +43,7 @@ export class SignInComponent implements OnInit {
 
     signIn() {
         const { email, password } = this.formSignIn.value;
-        alert(email + ' ' + password);
+        this.userService.signIn(email, password);
     }
 
 }
