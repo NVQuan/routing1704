@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Story } from '../type';
+import { StoryService } from '../services/story.service';
 
 @Component({
     selector: 'app-story-form',
@@ -16,8 +17,10 @@ import { Story } from '../type';
 
 export class StoryFormComponent {
     txtContent = '';
+    constructor(private storyService: StoryService) {}
+
     createStory() {
-        alert(this.txtContent);
+        this.storyService.createStory(this.txtContent);
         this.txtContent = '';
     }
 }

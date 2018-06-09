@@ -16,4 +16,10 @@ export class StoryService {
         .then(response => this.store.dispatch({ type: 'SET_STORIES', stories: response.stories }))
         .catch(() => alert('Kiểm tra kết nối mạng.'));
     }
+
+    createStory(content: string) {
+        this.request.post('/story', { content })
+        .then(response => this.store.dispatch({ type: 'CREATE_STORY', story: response.story }))
+        .catch(() => alert('Kiểm tra kết nối mạng.'));
+    }
 }
