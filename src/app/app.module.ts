@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// components
 import { AppComponent } from './app.component';
 import { FriendComponent } from './components/friend.component';
 import { HomeComponent } from './components/home.component';
@@ -10,6 +12,9 @@ import { SignUpComponent } from './components/sign-up.component';
 import { SignInComponent } from './components/sign-in.component';
 import { NavComponent } from './components/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
+
+// services
+import { RequestService } from './services/request.service';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
@@ -33,9 +38,11 @@ const routesConfig: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routesConfig)
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
