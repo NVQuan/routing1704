@@ -18,12 +18,16 @@ import { PageNotFoundComponent } from './components/page-not-found.component';
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
 
+// guards
+import { MustBeGuestGuard } from './guards/must-be-guest.guard';
+import { MustBeUserGuard } from './guards/must-be-user.guard';
+
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'signin', component: SignInComponent },
-  { path: 'signup', component: SignUpComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'friend', component: FriendComponent },
+  { path: 'signin', component: SignInComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'signup', component: SignUpComponent, canActivate: [MustBeGuestGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [MustBeUserGuard] },
+  { path: 'friend', component: FriendComponent, canActivate: [MustBeUserGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -45,7 +49,7 @@ const routesConfig: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routesConfig)
   ],
-  providers: [RequestService, UserService],
+  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
