@@ -15,4 +15,9 @@ export class UserService {
         })
         .catch(error => alert('Kiểm tra lại thông tin đăng nhập.'));
     }
+
+    logOut() {
+        localStorage.removeItem('token');
+        this.router.navigate(['/signin']);
+    }
 }

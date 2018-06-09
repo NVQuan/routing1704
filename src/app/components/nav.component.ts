@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-nav',
@@ -14,7 +15,7 @@ import { Component } from '@angular/core';
             <li><a routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
             <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
             <li><a routerLink="/friend" routerLinkActive="active">Friend</a></li>
-            <li><a>Log out</a></li>
+            <li><a (click)="logOut();" style="cursor: pointer;">Log out</a></li>
           </ul>
         </div>
       </nav>
@@ -22,4 +23,8 @@ import { Component } from '@angular/core';
     styles: [`a.active { font-weight: bold; }`]
 })
 
-export class NavComponent {}
+export class NavComponent {
+  constructor(private userService: UserService) {}
+
+  logOut() { this.userService.logOut(); }
+}
