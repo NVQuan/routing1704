@@ -14,6 +14,7 @@ import { SignUpComponent } from './components/sign-up.component';
 import { SignInComponent } from './components/sign-in.component';
 import { NavComponent } from './components/nav.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
+import { StoryComponent } from './components/story.component';
 
 // services
 import { RequestService } from './services/request.service';
@@ -45,7 +46,8 @@ const routesConfig: Routes = [
     SignUpComponent,
     ProfileComponent,
     NavComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,

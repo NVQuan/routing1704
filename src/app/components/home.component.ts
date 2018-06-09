@@ -6,7 +6,7 @@ import { AppState, Story } from '../type';
     selector: 'app-home',
     template: `
         <h4>Home Component</h4>
-        <pre>{{ stories | json }}</pre>
+        <app-story *ngFor="let story of stories" [story]="story"></app-story>
     `
 })
 
