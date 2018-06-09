@@ -28,4 +28,14 @@ export class UserService {
         localStorage.removeItem('token');
         this.router.navigate(['/signin']);
     }
+
+    checkToken() {
+        this.request.post('/user/check', null)
+        .then(response => {
+            localStorage.setItem('token', response.user.token);
+            const { _id, name, token, email } = response.user;
+            this.store.dispatch({ type: 'SET_CLIENT', client: { _id, name, token, email } });
+        })
+        .catch(() => console.log('Invalid token'));
+    }
 }
