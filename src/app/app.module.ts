@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 // components
 import { AppComponent } from './app.component';
@@ -21,6 +22,9 @@ import { UserService } from './services/user.service';
 // guards
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
+
+// reducers
+import { clientReducer } from './reducers';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
@@ -47,6 +51,7 @@ const routesConfig: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({ client: clientReducer }),
     RouterModule.forRoot(routesConfig)
   ],
   providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard],
