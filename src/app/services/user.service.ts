@@ -36,6 +36,8 @@ export class UserService {
             const { _id, name, token, email } = response.user;
             this.store.dispatch({ type: 'SET_CLIENT', client: { _id, name, token, email } });
         })
-        .catch(() => console.log('Invalid token'));
+        .catch(() => {
+            localStorage.removeItem('token');
+        });
     }
 }

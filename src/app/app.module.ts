@@ -18,13 +18,14 @@ import { PageNotFoundComponent } from './components/page-not-found.component';
 // services
 import { RequestService } from './services/request.service';
 import { UserService } from './services/user.service';
+import { StoryService } from './services/story.service';
 
 // guards
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 
 // reducers
-import { clientReducer } from './reducers';
+import { clientReducer, storiesReducer } from './reducers';
 
 const routesConfig: Routes = [
   { path: '', component: HomeComponent },
@@ -51,10 +52,10 @@ const routesConfig: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ client: clientReducer }),
+    StoreModule.forRoot({ client: clientReducer, stories: storiesReducer }),
     RouterModule.forRoot(routesConfig)
   ],
-  providers: [RequestService, UserService, MustBeGuestGuard, MustBeUserGuard],
+  providers: [RequestService, UserService, StoryService, MustBeGuestGuard, MustBeUserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
