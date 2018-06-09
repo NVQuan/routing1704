@@ -10,6 +10,6 @@ export class MustBeUserGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+    return !!localStorage.getItem('token');
   }
 }
