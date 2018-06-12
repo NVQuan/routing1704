@@ -30,4 +30,19 @@ export class FriendService {
         this.request.post('/friend/cancel/' + _id, null)
         .then(response => this.store.dispatch({ type: 'CANCEL_REQUEST', user: response.user }));
     }
+
+    acceptRequest(_id: string) {
+        this.request.post('/friend/accept/' + _id, null)
+        .then(response => this.store.dispatch({ type: 'ACCEPT_REQUEST', user: response.user }));
+    }
+
+    declineRequest(_id: string) {
+        this.request.post('/friend/decline/' + _id, null)
+        .then(response => this.store.dispatch({ type: 'DECLINE_REQUEST', user: response.user }));
+    }
+
+    removeFriend(_id: string) {
+        this.request.delete('/friend/' + _id)
+        .then(response => this.store.dispatch({ type: 'REMOVE_FRIEND', user: response.user }));
+    }
 }

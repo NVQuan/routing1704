@@ -53,4 +53,25 @@ export function peopleReducer(state: People = defaultPeople, action): People {
             otherUsers: [...state.otherUsers, action.user]
         };
     }
+    if (action.type === 'ACCEPT_REQUEST') {
+        return {
+            ...state,
+            inCommingRequests: state.inCommingRequests.filter(u => u._id !== action.user._id),
+            friends: [...state.friends, action.user]
+        };
+    }
+    if (action.type === 'DECLINE_REQUEST') {
+        return {
+            ...state,
+            inCommingRequests: state.inCommingRequests.filter(u => u._id !== action.user._id),
+            otherUsers: [...state.otherUsers, action.user]
+        };
+    }
+    if (action.type === 'REMOVE_FRIEND') {
+        return {
+            ...state,
+            friends: state.friends.filter(u => u._id !== action.user._id),
+            otherUsers: [...state.otherUsers, action.user]
+        };
+    }
 }

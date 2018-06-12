@@ -6,22 +6,38 @@ import { People, AppState } from '../type';
 @Component({
     template: `
         <h4>Friends</h4>
-        <h4>Sent Requests</h4>
-        <div *ngFor="let user of people.sentRequests" class="user">
-            <a class="user-link">{{ user.name }}</a>
-            <button class="btn btn-warning" (click)="cancelRequest(user._id)">
-                Cancel Request
-            </button>
+        <div *ngIf="people">
+            <div *ngFor="let user of people.friends" class="user">
+                <a class="user-link">{{ user.name }}</a>
+                <button class="btn btn-danger" (click)="removeFriend(user._id)">
+                    Remove Friend
+                </button>
+            </div>
+            <h4>Sent Requests</h4>
+            <div *ngFor="let user of people.sentRequests" class="user">
+                <a class="user-link">{{ user.name }}</a>
+                <button class="btn btn-warning" (click)="cancelRequest(user._id)">
+                    Cancel Request
+                </button>
+            </div>
+            <h4>Incomming Requests</h4>
+            <div *ngFor="let user of people.inCommingRequests" class="user">
+                <a class="user-link">{{ user.name }}</a>
+                <button class="btn btn-success" (click)="acceptRequest(user._id)">
+                    Accept Request
+                </button>
+                <button class="btn btn-primary" (click)="declineRequest(user._id)">
+                    Decline Request
+                </button>
+            </div>
+            <h4>Others</h4>
+            <div *ngFor="let user of people.otherUsers" class="user">
+                <a class="user-link">{{ user.name }}</a>
+                <button class="btn btn-success" (click)="addFriend(user._id)">
+                    Add Friend
+                </button>
+            </div>
         </div>
-        <h4>Incomming Requests</h4>
-        <h4>Others</h4>
-        <div *ngFor="let user of people.otherUsers" class="user">
-            <a class="user-link">{{ user.name }}</a>
-            <button class="btn btn-success" (click)="addFriend(user._id)">
-                Add Friend
-            </button>
-        </div>
-        <pre>{{ people | json }}</pre>
     `,
     styles: [`
         .user {
@@ -50,5 +66,17 @@ export class FriendComponent implements OnInit {
 
     cancelRequest(_id: string) {
         this.friendService.cancelRequest(_id);
+    }
+
+    acceptRequest(_id: string) {
+        this.friendService.acceptRequest(_id);
+    }
+
+    declineRequest(_id: string) {
+        this.friendService.declineRequest(_id);
+    }
+
+    removeFriend(_id: string) {
+        this.friendService.removeFriend(_id);
     }
 }
