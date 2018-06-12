@@ -14,16 +14,23 @@ export interface Story {
     _id: string;
     author: UserInfo;
     content: string;
-    comment: {
+    comments: {
         _id: string;
         author: UserInfo;
         content: string;
-        fans: string[];
-    };
+    }[];
     fans: UserInfo[];
+}
+
+export interface People {
+    friends: UserInfo[];
+    inCommingRequests: UserInfo[];
+    otherUsers: UserInfo[];
+    sentRequests: UserInfo[];
 }
 
 export interface AppState {
     client: Client;
     stories: Story[];
+    people: People;
 }
