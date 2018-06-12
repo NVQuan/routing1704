@@ -25,4 +25,9 @@ export class FriendService {
         this.request.post('/friend/add/' + _id, null)
         .then(response => this.store.dispatch({ type: 'ADD_FRIEND', user: response.user }));
     }
+
+    cancelRequest(_id: string) {
+        this.request.post('/friend/cancel/' + _id, null)
+        .then(response => this.store.dispatch({ type: 'CANCEL_REQUEST', user: response.user }));
+    }
 }

@@ -46,4 +46,11 @@ export function peopleReducer(state: People = defaultPeople, action): People {
             sentRequests: [...state.sentRequests, action.user]
         };
     }
+    if (action.type === 'CANCEL_REQUEST') {
+        return {
+            ...state,
+            sentRequests: state.sentRequests.filter(u => u._id !== action.user._id),
+            otherUsers: [...state.otherUsers, action.user]
+        };
+    }
 }

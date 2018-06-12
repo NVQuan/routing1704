@@ -9,7 +9,9 @@ import { People, AppState } from '../type';
         <h4>Sent Requests</h4>
         <div *ngFor="let user of people.sentRequests" class="user">
             <a class="user-link">{{ user.name }}</a>
-            <button class="btn btn-warning">Cancel Request</button>
+            <button class="btn btn-warning" (click)="cancelRequest(user._id)">
+                Cancel Request
+            </button>
         </div>
         <h4>Incomming Requests</h4>
         <h4>Others</h4>
@@ -44,5 +46,9 @@ export class FriendComponent implements OnInit {
 
     addFriend(_id: string) {
         this.friendService.sendRequest(_id);
+    }
+
+    cancelRequest(_id: string) {
+        this.friendService.cancelRequest(_id);
     }
 }
