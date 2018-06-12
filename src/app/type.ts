@@ -11,6 +11,7 @@ export interface UserInfo {
 }
 
 export interface Story {
+    _id: string;
     author: UserInfo;
     content: string;
     comment: {
@@ -19,7 +20,7 @@ export interface Story {
         content: string;
         fans: string[];
     };
-    fans: string[];
+    fans: UserInfo[];
 }
 
 export interface AppState {
